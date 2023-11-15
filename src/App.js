@@ -2,11 +2,27 @@ import "./App.css";
 import React, { useState } from "react";
 function App() {
   const [calc, setCalc] = useState("0");
+  const operators = ["/", "*", "+", "-", "."];
   const getNumber = (_) => {
-    setCalc((prev) => prev + _.target.value);
+    setCalc((prev) => {
+      const currentValue = _.target.value;
+      const lastChar = prev.charAt(prev.length - 1);
+
+      if (operators.includes(lastChar) && operators.includes(currentValue))
+        return prev;
+
+      return prev === "0" ? _.target.value : prev + _.target.value;
+    });
+  };
+  const deleteBtn = () => {
+    let newStr = calc.slice(0, -1);
+    setCalc((prev) => newStr);
   };
   const clearInput = () => {
     setCalc("0");
+  };
+  const calculateInput = () => {
+    setCalc((prev) => eval(prev).toString());
   };
 
   return (
@@ -37,7 +53,7 @@ function App() {
           9
         </button>
         <button onClick={clearInput} value="C">
-          c
+          C
         </button>
         <button onClick={getNumber} value="4">
           4
@@ -47,9 +63,6 @@ function App() {
         </button>
         <button onClick={getNumber} value="6">
           6
-        </button>
-        <button className="equal-button" onClick={getNumber} value="=">
-          =
         </button>
         <button onClick={getNumber} value="1">
           1
@@ -65,6 +78,12 @@ function App() {
         </button>
         <button onClick={getNumber} value=".">
           .
+        </button>
+        <button className="equal-button" onClick={calculateInput} value="=">
+          =
+        </button>
+        <button className="deleteBtn" onClick={deleteBtn}>
+          del
         </button>
       </div>
     </div>
