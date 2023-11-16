@@ -26,7 +26,7 @@
 .value-input {
   height: 70%;
   width: 90%;
-  background-color:#eef0e9;
+  background-color: #eef0e9;
   font-size: 2rem;
   font-weight: 800;
   color: black;
@@ -54,13 +54,18 @@ button:active {
   background-color: #98a07a;
 }
 .zero-button {
+  grid-row: 5/6;
   grid-column: 1/3;
 }
 .equal-button {
   grid-row: 4/6;
   grid-column: 4/5;
 }
-.deleteBtn {
+.delete-button {
   grid-row: 3/4;
+  grid-column: 4/5;
+}
+.clear-button {
+  grid-row: 2/3;
   grid-column: 4/5;
 }
