@@ -25,7 +25,7 @@ function App() {
 
   const deleteBtn = () => {
     let newStr = calc.slice(0, -1);
-    setCalc((prev) => newStr);
+    setCalc(newStr);
   };
 
   const clearInput = () => {
